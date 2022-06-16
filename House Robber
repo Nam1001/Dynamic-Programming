@@ -1,0 +1,22 @@
+int loot(vector<int>&house,int index,vector<int>&dp)
+{
+    if(index==0)
+    {
+        return house[index];
+    }
+    if(index<0) return 0;
+    if(dp[index]!=-1) return dp[index];
+    int pick= house[index]+loot(house,index-2,dp);
+    int notpick=0+loot(house,index-1,dp);
+    dp[index]=max(pick,notpick);
+    return dp[index];
+}
+
+int maxMoneyLooted(vector<int> &houses, int n)
+{
+	vector<int>dp(n,-1);
+   return loot(houses,n-1,dp); 
+    
+}
+
+// Driver code
